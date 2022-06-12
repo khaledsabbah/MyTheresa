@@ -41,6 +41,15 @@ class ApiController extends Controller
     }
 
     /**
+     * This Function for setting the status code to 400
+     * @return JsonResponse
+     */
+    public function respondBadRequest($message=null): JsonResponse
+    {
+        return $this->setStatusCode(400)->respond(!$message?[]:['message'=>$message]);
+    }
+
+    /**
      * This Function for setting the status code to 401
      * @return JsonResponse
      */

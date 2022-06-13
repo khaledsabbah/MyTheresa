@@ -82,7 +82,7 @@ I tried to apply S.O.L.I.D principles & use some design pattern and Hydrate ever
 #### Patterns used:
 - ``Service Oriented architecture``  Calling services and repositories if any, retrieving data and aggregate multiple processes.
 - ``Factory Pattern``   Create an Advertiser object on the fly .
-- ``Hydrator Pattern``  Hydrate inputs ( eg. data ) into entities .
+- ``Hydrator | Entity Pattern``  Hydrate inputs ( eg. data ) into entities .
 - ``Composite Entity Pattern``  Applying composition and relations between Entities.
 - ``Filter Pattern``   Filter data and return only what meet the implemented criteria
 - ``Transformer Pattern``  Transform response object to and JSONable type like Array .

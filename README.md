@@ -73,7 +73,7 @@ Run the following commands inside terminal:
 
 # Test Cases:
 
-- Run   `make test` OR ||  ` ./vendor/phpunit/phpunit/phpunit `
+- Run   `make test` OR  ` ./vendor/phpunit/phpunit/phpunit `
 - Then, you'll see result like this: ![alt text](https://raw.githubusercontent.com/khaledsabbah/MyTheresa/main/images/tests.png)
 
 ## Code Desgin and Architect

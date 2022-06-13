@@ -69,10 +69,12 @@ Run the following commands inside terminal:
 ###### Get Products With All Filters Together :
 *       http://localhost:8089/products?category=boots&priceLessThan=71000&hasDiscount=1&page=1&limit=1  
 
+- Then, you'll see result like this: ![alt text](https://raw.githubusercontent.com/khaledsabbah/MyTheresa/main/images/products.png)
+
 # Test Cases:
 
 - Run   `make test`
-- Then, you'll see result like this: ![alt text](../images/tests.png)
+- Then, you'll see result like this: ![alt text](https://raw.githubusercontent.com/khaledsabbah/MyTheresa/main/images/tests.png)
 
 ## Code Desgin and Architect
 I tried to apply S.O.L.I.D principles & use some design pattern and Hydrate everything into object as possible.

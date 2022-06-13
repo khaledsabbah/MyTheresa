@@ -1,64 +1,93 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# MYTHERESA Pre-Interview Task
+- <h3><i> To make the task interesting, I prefered Not To Use DB and assumed that  I have multiple stores ( ex: MYTHERESA ) that provide external APIs to call and list products </i></h3>
+-  I've used Laravel to implement an API endpoint that returns a JSON response contains a list of products filtered by multiple filters like category, lessThan and hasDiscount
+ 
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# Installation Using Docker ( Linux )
 
-## About Laravel
+## Perquisite
+- `Docker`
+- `docker-compose`
+- `Makefile`
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Dev-Ops Description :
+- Docker & docker-compose.
+- register services  ``php-fpm ``, ``nginx``
+- Link each service to service registry .
+- use ``make`` command to automate operations
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Install
+- extract the .zip file or download using `git clone https://github.com/khaledsabbah/MyTheresa.git MyTheresa`
+- `cd MyTheresa` <small> ( go to task location )</small>
+- `make init`
+- `make install permission`
+- You should see the following image
+  ![alt text](../images/server.png)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- To Open docker container use the following command
 
-## Learning Laravel
+        docker exec -it phpfpm /bin/bash
+## Server Up
+  `make up`
+# Normal Installation ( Manual )
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+* Run ``git clone https://github.com/khaledsabbah/MyTheresa.git MyTheresa``
+* Go to `MyTheresa` Folder
+* copy .env.example content in a new file named as `.env`
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Run the following commands inside terminal:
+    
+  ```
+      composer install
+      chmod 755 -R storage/logs/
+      chmod 777 -R storage/framework/sessions/
+      chmod 777 -R storage/framework/views/
+      chmod 777 -R storage/framework/cache/
+      chmod 777 -R bootstrap/cache/
+      php artisan optimize:clear
+      php artisan serve --port=8089  
+  ```
 
-## Laravel Sponsors
+#Running
+*        Base Url :   http://localhost:8089
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+- ``page`` Is The Page Number
+- ``limit`` Number Of Products Per Page
 
-### Premium Partners
+###### Get Products With Category `boots`  :
+*       http://localhost:8089/products?category=boots&page=1&limit=1  
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+###### Get Products With priceLessThan `71000` : 
+*       http://localhost:8089/products?priceLessThan=71000&page=1&limit=1  
 
-## Contributing
+###### Get Products That Has Discount :
+*       http://localhost:8089/products?hasDiscount=1&page=1&limit=1
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+###### Get Products That Doesn't Has Any Discount :
+*       http://localhost:8089/products?hasDiscount=0&page=1&limit=1  
 
-## Code of Conduct
+###### Get Products With All Filters Together :
+*       http://localhost:8089/products?category=boots&priceLessThan=71000&hasDiscount=1&page=1&limit=1  
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+# Test Cases:
 
-## Security Vulnerabilities
+- Run   `make test`
+- Then, you'll see result like this: ![alt text](../images/tests.png)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Code Desgin and Architect
+I tried to apply S.O.L.I.D principles & use some design pattern and Hydrate everything into object as possible.
 
-## License
+#### Patterns used:
+- ``Service Oriented architecture``  Calling services and repositories if any, retrieving data and aggregate multiple processes.
+- ``Factory Pattern``   Create an Advertiser object on the fly .
+- ``Hydrator Pattern``  Hydrate inputs ( eg. data ) into entities .
+- ``Composite Entity Pattern``  Applying composition and relations between Entities.
+- ``Filter Pattern``   Filter data and return only what meet the implemented criteria
+- ``Transformer Pattern``  Transform response object to and JSONable type like Array .
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+# WorkFlow
+- `Controller` calls `Service` Method to fetch data
+- `Hydrators` used to hydrate data using `Entities`.
+- `Fitlers` used do our logic remove repeated rooms and sort hydrated objects
+- `Transformers` used to transform the result in the JSON Output.

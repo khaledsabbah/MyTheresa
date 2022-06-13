@@ -22,7 +22,7 @@
 - `make init`
 - `make install permission`
 - You should see the following image
-  ![alt text](../images/server.png)
+  ![alt text](https://raw.githubusercontent.com/khaledsabbah/MyTheresa/main/images/server.png)
 
 - To Open docker container use the following command
 

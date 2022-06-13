@@ -75,5 +75,11 @@ class ProductService
         return $this;
     }
 
+    public function paginate($page = 1, $limit=5)
+    {
+        $products= collect($this->getProducts());
+        return $products->forPage($page,$limit)->all();
+    }
+
 
 }

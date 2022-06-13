@@ -17,8 +17,8 @@ class Mytheresa extends AbstractStore
     public function getStoreProducts(): array
     {
         // This Should be call to external api to get list of products
-        $products = Storage::disk("public")->get("products.json");
-        return json_decode($products, true);
+        $products = file_get_contents("products.json");
+        return $this->products= json_decode($products, true);
     }
 
 }

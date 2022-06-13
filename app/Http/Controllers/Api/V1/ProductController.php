@@ -37,7 +37,7 @@ class ProductController extends ApiController
                 ->loadProductsFromStore()
                 ->implementDiscounts()
                 ->applyFilters($queryStrings)
-                ->getProducts();
+                ->paginate($request->page,$request->limit??5);
             return $this->respond(ProductTransformer::transform($products));
         } catch (StoreApiDownException $storeApiDownException) {
             return $this->respondBadRequest($storeApiDownException->getMessage());
